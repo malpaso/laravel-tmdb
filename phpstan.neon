@@ -6,8 +6,6 @@ parameters:
     tmpDir: build/phpstan
     
     # Configuration options
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     
     # Error reporting
     reportUnmatchedIgnoredErrors: false
