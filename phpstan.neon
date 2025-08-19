@@ -1,0 +1,50 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    tmpDir: build/phpstan
+    
+    # Configuration options
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    
+    # Error reporting
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
+    
+    # Bootstrap file for better class resolution
+    bootstrapFiles:
+        - vendor/autoload.php
+    
+    # Ignores for common patterns in API wrapper packages
+    ignoreErrors:
+        # Allow mixed return types for API responses (TMDB API returns varied structures)
+        - '#Method .+ should return .+ but returns mixed\.#'
+        
+        # Allow array access on mixed types (common with decoded JSON responses)
+        - '#Cannot access offset .+ on mixed\.#'
+        
+        # Allow dynamic property access on stdClass objects from JSON
+        - '#Access to an undefined property stdClass::\$.+#'
+        
+        # Test-specific ignores for Mockery
+        - 
+            message: '#Call to an undefined method .+MockInterface::.+#'
+            path: tests/*
+        -
+            message: '#Parameter .+ of method .+ expects .+, Mockery.+ given\.#'
+            path: tests/*
+        -
+            message: '#Undefined variable: \$this#'
+            path: tests/*
+        
+        # Pest testing framework specific ignores
+        -
+            message: '#Function .+ not found\.#'
+            path: tests/*
+            
+    # Excluded files/directories
+    excludePaths:
+        - tests/Pest.php
+        - vendor/

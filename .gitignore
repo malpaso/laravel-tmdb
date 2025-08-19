@@ -1,0 +1,42 @@
+# Dependencies
+/vendor
+composer.lock
+
+# IDE
+/.idea
+/.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+/.phpunit.cache
+/coverage
+/build
+/.pest
+
+# Static Analysis
+/phpstan.neon.dist
+
+# Rector
+/rector.php.cache
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Cache
+/bootstrap/cache
+/storage
