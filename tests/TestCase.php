@@ -42,7 +42,7 @@ class TestCase extends Orchestra
         $app['config']->set('tmdb.base_url', env('TMDB_BASE_URL', 'https://api.themoviedb.org/3'));
         $app['config']->set('tmdb.language', env('TMDB_LANGUAGE', 'en-US'));
         $app['config']->set('tmdb.region', env('TMDB_REGION', 'US'));
-        $app['config']->set('tmdb.cache.enabled', env('TMDB_CACHE_ENABLED', false)); // Disable cache in tests
+        $app['config']->set('tmdb.cache.enabled', false); // Always disable cache in tests
         $app['config']->set('tmdb.cache.ttl', env('TMDB_CACHE_TTL', 3600));
         $app['config']->set('tmdb.cache.prefix', env('TMDB_CACHE_PREFIX', 'tmdb'));
         $app['config']->set('tmdb.http.timeout', env('TMDB_HTTP_TIMEOUT', 30));

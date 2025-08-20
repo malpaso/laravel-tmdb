@@ -92,7 +92,9 @@ class TmdbManager
     /**
      * Proxy method calls to the client.
      *
-     * @return mixed
+     * @param string $method Method name to call on the client
+     * @param array<int, mixed> $arguments Method arguments to pass to the client
+     * @return mixed Result from the client method call
      */
     public function __call(string $method, array $arguments)
     {

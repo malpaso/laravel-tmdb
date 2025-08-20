@@ -18,6 +18,13 @@ class TmdbClient implements TmdbClientInterface
     protected bool $useCache = true;
     protected ?int $cacheTtl = null;
 
+    /**
+     * Create a new TMDB client instance.
+     *
+     * @param Client $httpClient HTTP client for making requests
+     * @param CacheManager $cache Laravel cache manager
+     * @param array<string, mixed> $config Configuration array
+     */
     public function __construct(protected Client $httpClient, protected CacheManager $cache, protected array $config)
     {
         $this->useCache = $this->config['cache']['enabled'] ?? true;
@@ -102,6 +109,11 @@ class TmdbClient implements TmdbClientInterface
     /**
      * Make a request to the TMDB API.
      *
+     * @param string $method HTTP method (GET, POST, PUT, DELETE)
+     * @param string $endpoint API endpoint
+     * @param array<string, mixed> $data Request body data
+     * @param array<string, mixed> $params Query parameters
+     * @return array<string, mixed> Decoded JSON response from TMDB API
      * @throws TmdbException
      */
     protected function makeRequest(string $method, string $endpoint, array $data = [], array $params = []): array
@@ -156,6 +168,9 @@ class TmdbClient implements TmdbClientInterface
 
     /**
      * Prepare query parameters for the request.
+     *
+     * @param array<string, mixed> $params Input query parameters
+     * @return array<string, mixed> Prepared query parameters with defaults added
      */
     protected function prepareParams(array $params): array
     {
@@ -177,6 +192,11 @@ class TmdbClient implements TmdbClientInterface
 
     /**
      * Build request options for Guzzle.
+     *
+     * @param string $method HTTP method
+     * @param array<string, mixed> $data Request body data
+     * @param array<string, mixed> $params Query parameters
+     * @return array<string, mixed> Guzzle request options
      */
     protected function buildRequestOptions(string $method, array $data, array $params): array
     {
@@ -200,6 +220,8 @@ class TmdbClient implements TmdbClientInterface
 
     /**
      * Get authentication headers.
+     *
+     * @return array<string, string> HTTP headers for authentication
      */
     protected function getAuthHeaders(): array
     {
@@ -218,6 +240,12 @@ class TmdbClient implements TmdbClientInterface
 
     /**
      * Generate cache key for the request.
+     *
+     * @param string $method HTTP method
+     * @param string $endpoint API endpoint
+     * @param array<string, mixed> $params Query parameters
+     * @param array<string, mixed> $data Request body data
+     * @return string Cache key for the request
      */
     protected function getCacheKey(string $method, string $endpoint, array $params, array $data): string
     {
@@ -234,9 +262,11 @@ class TmdbClient implements TmdbClientInterface
     /**
      * Handle client exceptions (4xx errors).
      *
+     * @param ClientException $e Client exception to handle
+     * @return never This method always throws an exception
      * @throws TmdbException
      */
-    protected function handleClientException(ClientException $e): void
+    protected function handleClientException(ClientException $e): never
     {
         $statusCode = $e->getResponse()->getStatusCode();
         $responseData = $this->getResponseData($e);
@@ -259,10 +289,13 @@ class TmdbClient implements TmdbClientInterface
 
     /**
      * Get response data from exception.
+     *
+     * @param RequestException $e Exception that may contain response data
+     * @return array<string, mixed> Decoded JSON response data or empty array
      */
     protected function getResponseData(RequestException $e): array
     {
-        if ($e->hasResponse()) {
+        if ($e->hasResponse() && $e->getResponse() instanceof \Psr\Http\Message\ResponseInterface) {
             $body = $e->getResponse()->getBody()->getContents();
             return json_decode($body, true) ?: [];
         }

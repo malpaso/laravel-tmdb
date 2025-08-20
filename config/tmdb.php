@@ -114,4 +114,16 @@ return [
         'requests_per_window' => 40,
         'window_seconds' => 10,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Log
+    |--------------------------------------------------------------------------
+    |
+    */
+    'log' => [
+        'enabled' => true,
+        // Keep the path empty or remove it entirely to default to storage/logs/tmdb.log
+        'path' => storage_path('logs/tmdb.log')
+    ]
 ];

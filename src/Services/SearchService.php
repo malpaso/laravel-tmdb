@@ -13,7 +13,9 @@ class SearchService
     /**
      * Search for movies.
      *
-     * @param array $params Additional parameters (year, primary_release_year, etc.)
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional parameters (year, primary_release_year, etc.)
+     * @return array<string, mixed> Movie search results from TMDB API
      */
     public function movies(string $query, array $params = []): array
     {
@@ -25,7 +27,9 @@ class SearchService
     /**
      * Search for TV shows.
      *
-     * @param array $params Additional parameters (first_air_date_year, etc.)
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional parameters (first_air_date_year, etc.)
+     * @return array<string, mixed> TV show search results from TMDB API
      */
     public function tv(string $query, array $params = []): array
     {
@@ -37,7 +41,9 @@ class SearchService
     /**
      * Search for people.
      *
-     * @param array $params Additional parameters (include_adult, etc.)
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional parameters (include_adult, etc.)
+     * @return array<string, mixed> People search results from TMDB API
      */
     public function people(string $query, array $params = []): array
     {
@@ -48,6 +54,10 @@ class SearchService
 
     /**
      * Search for companies.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Company search results from TMDB API
      */
     public function companies(string $query, array $params = []): array
     {
@@ -58,6 +68,10 @@ class SearchService
 
     /**
      * Search for collections.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Collection search results from TMDB API
      */
     public function collections(string $query, array $params = []): array
     {
@@ -68,6 +82,10 @@ class SearchService
 
     /**
      * Search for keywords.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Keyword search results from TMDB API
      */
     public function keywords(string $query, array $params = []): array
     {
@@ -78,6 +96,10 @@ class SearchService
 
     /**
      * Multi search across movies, TV shows, and people.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Multi search results from TMDB API
      */
     public function multi(string $query, array $params = []): array
     {
@@ -90,6 +112,10 @@ class SearchService
      * Search with pagination support.
      *
      * @param string $type Search type (movie, tv, person, multi, etc.)
+     * @param string $query Search query string
+     * @param int $page Page number for pagination
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Paginated search results from TMDB API
      */
     public function paginated(string $type, string $query, int $page = 1, array $params = []): array
     {
@@ -101,6 +127,10 @@ class SearchService
 
     /**
      * Advanced movie search with multiple filters.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $filters Advanced search filters (year, include_adult, etc.)
+     * @return array<string, mixed> Advanced movie search results from TMDB API
      */
     public function moviesAdvanced(string $query, array $filters = []): array
     {
@@ -111,6 +141,10 @@ class SearchService
 
     /**
      * Advanced TV search with multiple filters.
+     *
+     * @param string $query Search query string
+     * @param array<string, mixed> $filters Advanced search filters (first_air_date_year, etc.)
+     * @return array<string, mixed> Advanced TV search results from TMDB API
      */
     public function tvAdvanced(string $query, array $filters = []): array
     {

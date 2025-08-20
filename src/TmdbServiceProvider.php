@@ -36,7 +36,7 @@ class TmdbServiceProvider extends ServiceProvider
      */
     protected function registerClient(): void
     {
-        $this->app->singleton(TmdbClientInterface::class, function (array $app): \malpaso\LaravelTmdb\TmdbClient {
+        $this->app->singleton(TmdbClientInterface::class, function ($app): \malpaso\LaravelTmdb\TmdbClient {
             $config = $app['config']['tmdb'];
             
             $httpClient = new Client([
@@ -81,7 +81,7 @@ class TmdbServiceProvider extends ServiceProvider
      */
     protected function validateConfig(): void
     {
-        $config = $this->app['config']['tmdb'];
+        $config = $this->app->make('config')->get('tmdb');
 
         if (empty($config['api_key']) && empty($config['access_token'])) {
             throw new \InvalidArgumentException(
@@ -92,6 +92,8 @@ class TmdbServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
+     *
+     * @return array<int, string> List of service identifiers provided by this service provider
      */
     public function provides(): array
     {

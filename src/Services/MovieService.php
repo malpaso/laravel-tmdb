@@ -13,7 +13,9 @@ class MovieService
     /**
      * Get movie details by ID.
      *
-     * @param array $appendToResponse Additional data to append (credits, videos, etc.)
+     * @param int $movieId Movie ID
+     * @param array<int, string> $appendToResponse Additional data to append (credits, videos, etc.)
+     * @return array<string, mixed> Movie details from TMDB API
      */
     public function details(int $movieId, array $appendToResponse = []): array
     {
@@ -28,6 +30,9 @@ class MovieService
 
     /**
      * Get movie credits (cast and crew).
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> Movie credits from TMDB API
      */
     public function credits(int $movieId): array
     {
@@ -36,6 +41,9 @@ class MovieService
 
     /**
      * Get movie videos (trailers, teasers, etc.).
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> Movie videos from TMDB API
      */
     public function videos(int $movieId): array
     {
@@ -44,6 +52,10 @@ class MovieService
 
     /**
      * Get movie images (backdrops, posters).
+     *
+     * @param int $movieId Movie ID
+     * @param array<string, mixed> $params Additional query parameters
+     * @return array<string, mixed> Movie images from TMDB API
      */
     public function images(int $movieId, array $params = []): array
     {
@@ -52,6 +64,10 @@ class MovieService
 
     /**
      * Get movie reviews.
+     *
+     * @param int $movieId Movie ID
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Movie reviews from TMDB API
      */
     public function reviews(int $movieId, int $page = 1): array
     {
@@ -60,6 +76,10 @@ class MovieService
 
     /**
      * Get similar movies.
+     *
+     * @param int $movieId Movie ID
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Similar movies from TMDB API
      */
     public function similar(int $movieId, int $page = 1): array
     {
@@ -68,6 +88,10 @@ class MovieService
 
     /**
      * Get movie recommendations.
+     *
+     * @param int $movieId Movie ID
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Movie recommendations from TMDB API
      */
     public function recommendations(int $movieId, int $page = 1): array
     {
@@ -76,6 +100,9 @@ class MovieService
 
     /**
      * Get external IDs for a movie.
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> External IDs from TMDB API
      */
     public function externalIds(int $movieId): array
     {
@@ -84,6 +111,9 @@ class MovieService
 
     /**
      * Get movie release dates.
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> Movie release dates from TMDB API
      */
     public function releaseDates(int $movieId): array
     {
@@ -92,6 +122,9 @@ class MovieService
 
     /**
      * Get movie watch providers.
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> Watch providers from TMDB API
      */
     public function watchProviders(int $movieId): array
     {
@@ -100,6 +133,9 @@ class MovieService
 
     /**
      * Get movie keywords.
+     *
+     * @param int $movieId Movie ID
+     * @return array<string, mixed> Movie keywords from TMDB API
      */
     public function keywords(int $movieId): array
     {
@@ -108,6 +144,9 @@ class MovieService
 
     /**
      * Get popular movies.
+     *
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Popular movies from TMDB API
      */
     public function popular(int $page = 1): array
     {
@@ -116,6 +155,9 @@ class MovieService
 
     /**
      * Get top rated movies.
+     *
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Top rated movies from TMDB API
      */
     public function topRated(int $page = 1): array
     {
@@ -124,6 +166,9 @@ class MovieService
 
     /**
      * Get upcoming movies.
+     *
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Upcoming movies from TMDB API
      */
     public function upcoming(int $page = 1): array
     {
@@ -132,6 +177,9 @@ class MovieService
 
     /**
      * Get now playing movies.
+     *
+     * @param int $page Page number for pagination
+     * @return array<string, mixed> Now playing movies from TMDB API
      */
     public function nowPlaying(int $page = 1): array
     {
@@ -140,6 +188,8 @@ class MovieService
 
     /**
      * Get latest movie.
+     *
+     * @return array<string, mixed> Latest movie from TMDB API
      */
     public function latest(): array
     {
@@ -148,6 +198,9 @@ class MovieService
 
     /**
      * Discover movies based on filters.
+     *
+     * @param array<string, mixed> $filters Discovery filters
+     * @return array<string, mixed> Discovered movies from TMDB API
      */
     public function discover(array $filters = []): array
     {
@@ -157,7 +210,10 @@ class MovieService
     /**
      * Rate a movie (requires authentication).
      *
+     * @param int $movieId Movie ID
      * @param float $rating Rating from 0.5 to 10.0
+     * @param string|null $sessionId Optional session ID for authentication
+     * @return array<string, mixed> Rating response from TMDB API
      */
     public function rate(int $movieId, float $rating, ?string $sessionId = null): array
     {
@@ -173,6 +229,10 @@ class MovieService
 
     /**
      * Delete movie rating (requires authentication).
+     *
+     * @param int $movieId Movie ID
+     * @param string|null $sessionId Optional session ID for authentication
+     * @return array<string, mixed> Delete rating response from TMDB API
      */
     public function deleteRating(int $movieId, ?string $sessionId = null): array
     {

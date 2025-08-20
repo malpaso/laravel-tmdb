@@ -12,6 +12,8 @@ class ConfigurationService
 
     /**
      * Get API configuration details.
+     *
+     * @return array<string, mixed> API configuration from TMDB
      */
     public function details(): array
     {
@@ -20,6 +22,8 @@ class ConfigurationService
 
     /**
      * Get available countries.
+     *
+     * @return array<string, mixed> Available countries from TMDB API
      */
     public function countries(): array
     {
@@ -28,6 +32,8 @@ class ConfigurationService
 
     /**
      * Get available jobs.
+     *
+     * @return array<string, mixed> Available jobs from TMDB API
      */
     public function jobs(): array
     {
@@ -36,6 +42,8 @@ class ConfigurationService
 
     /**
      * Get available languages.
+     *
+     * @return array<string, mixed> Available languages from TMDB API
      */
     public function languages(): array
     {
@@ -44,6 +52,8 @@ class ConfigurationService
 
     /**
      * Get primary translations.
+     *
+     * @return array<string, mixed> Primary translations from TMDB API
      */
     public function primaryTranslations(): array
     {
@@ -52,6 +62,8 @@ class ConfigurationService
 
     /**
      * Get available timezones.
+     *
+     * @return array<string, mixed> Available timezones from TMDB API
      */
     public function timezones(): array
     {
@@ -60,6 +72,8 @@ class ConfigurationService
 
     /**
      * Get image base URL and available sizes.
+     *
+     * @return array<string, mixed> Image configuration from TMDB API
      */
     public function images(): array
     {
@@ -80,6 +94,8 @@ class ConfigurationService
 
     /**
      * Get all available poster sizes.
+     *
+     * @return array<int, string> Available poster sizes from TMDB API
      */
     public function posterSizes(): array
     {
@@ -89,6 +105,8 @@ class ConfigurationService
 
     /**
      * Get all available backdrop sizes.
+     *
+     * @return array<int, string> Available backdrop sizes from TMDB API
      */
     public function backdropSizes(): array
     {
@@ -98,6 +116,8 @@ class ConfigurationService
 
     /**
      * Get all available profile sizes.
+     *
+     * @return array<int, string> Available profile sizes from TMDB API
      */
     public function profileSizes(): array
     {
@@ -107,6 +127,8 @@ class ConfigurationService
 
     /**
      * Get all available logo sizes.
+     *
+     * @return array<int, string> Available logo sizes from TMDB API
      */
     public function logoSizes(): array
     {
@@ -116,6 +138,8 @@ class ConfigurationService
 
     /**
      * Get all available still sizes.
+     *
+     * @return array<int, string> Available still sizes from TMDB API
      */
     public function stillSizes(): array
     {
