@@ -1,3 +1,73 @@
+A comprehensive Laravel wrapper for The Movie Database (TMDB) API v3. This package provides an elegant and easy-to-use interface for accessing movie, TV show, and person data from TMDB.
+
+## Features
+
+- 🎬 Complete TMDB API v3 coverage
+- 🚀 Laravel integration with service provider and facade
+- 💾 Built-in caching support
+- 🔧 Configurable HTTP client
+- 🎯 Type-safe interfaces
+- 🧪 Comprehensive test coverage
+- 📖 Detailed documentation
+- 🔐 Bearer token and API key authentication
+- 🌍 Multi-language and region support
+- ⚡ Rate limiting awareness
+
+## Installation
+
+Install the package via Composer:
+
+```bash
+composer require malpaso/laravel-tmdb
+```
+
+### Laravel Auto-Discovery
+
+The package will automatically register itself via Laravel's package discovery.
+
+### Manual Registration (if needed)
+
+If auto-discovery is disabled, add the service provider to `config/app.php`:
+
+```php
+'providers' => [
+    // ...
+    malpaso\LaravelTmdb\TmdbServiceProvider::class,
+],
+```
+
+And optionally add the facade:
+
+```php
+'aliases' => [
+    // ...
+    'Tmdb' => malpaso\LaravelTmdb\Facades\Tmdb::class,
+],
+```
+
+## Configuration
+
+Publish the configuration file:
+
+```bash
+php artisan vendor:publish --tag=tmdb-config
+```
+
+Add your TMDB credentials to your `.env` file:
+
+```env
+# Get your API credentials from https://www.themoviedb.org/settings/api
+TMDB_ACCESS_TOKEN=your_access_token_here
+# OR use API key (Bearer token is preferred)
+TMDB_API_KEY=your_api_key_here
+
+# Optional configuration
+TMDB_LANGUAGE=en-US
+TMDB_REGION=US
+TMDB_CACHE_ENABLED=true
+TMDB_CACHE_TTL=3600
+```
+
 ## Testing
 
 This package uses [Pest](https://pestphp.com/) for testing, which provides a more elegant testing experience.
@@ -83,76 +153,6 @@ The package provides several test helpers in `tests/Pest.php`:
 - `mockMovieResponse()` - Returns sample movie data
 - `mockTvShowResponse()` - Returns sample TV show data
 - `mockPersonResponse()` - Returns sample person data# Laravel TMDB Package
-
-A comprehensive Laravel wrapper for The Movie Database (TMDB) API v3. This package provides an elegant and easy-to-use interface for accessing movie, TV show, and person data from TMDB.
-
-## Features
-
-- 🎬 Complete TMDB API v3 coverage
-- 🚀 Laravel integration with service provider and facade
-- 💾 Built-in caching support
-- 🔧 Configurable HTTP client
-- 🎯 Type-safe interfaces
-- 🧪 Comprehensive test coverage
-- 📖 Detailed documentation
-- 🔐 Bearer token and API key authentication
-- 🌍 Multi-language and region support
-- ⚡ Rate limiting awareness
-
-## Installation
-
-Install the package via Composer:
-
-```bash
-composer require malpaso/laravel-tmdb
-```
-
-### Laravel Auto-Discovery
-
-The package will automatically register itself via Laravel's package discovery.
-
-### Manual Registration (if needed)
-
-If auto-discovery is disabled, add the service provider to `config/app.php`:
-
-```php
-'providers' => [
-    // ...
-    malpaso\LaravelTmdb\TmdbServiceProvider::class,
-],
-```
-
-And optionally add the facade:
-
-```php
-'aliases' => [
-    // ...
-    'Tmdb' => malpaso\LaravelTmdb\Facades\Tmdb::class,
-],
-```
-
-## Configuration
-
-Publish the configuration file:
-
-```bash
-php artisan vendor:publish --tag=tmdb-config
-```
-
-Add your TMDB credentials to your `.env` file:
-
-```env
-# Get your API credentials from https://www.themoviedb.org/settings/api
-TMDB_ACCESS_TOKEN=your_access_token_here
-# OR use API key (Bearer token is preferred)
-TMDB_API_KEY=your_api_key_here
-
-# Optional configuration
-TMDB_LANGUAGE=en-US
-TMDB_REGION=US
-TMDB_CACHE_ENABLED=true
-TMDB_CACHE_TTL=3600
-```
 
 ## Usage
 
